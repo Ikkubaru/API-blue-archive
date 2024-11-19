@@ -6,11 +6,19 @@ export const MainContainer = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    position: absolute;
 `
 export const CardCharacter = styled.div`
-    border-radius: 15px;
+    position: relative;
+    outline: 1px solid lightblue;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 5px;
     justify-content: center;
-    border: 1px solid blue;
-    width: 200px;
-    height: 470px;
+    text-align: center;
+    width: 150px;
+    height: auto;
+`
+export const NameChar = styled.h1`
+    font-size: medium;
+    font-family: sans-serif;
 `

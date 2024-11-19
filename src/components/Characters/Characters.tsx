@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { CardCharacter, MainContainer } from "./Characters.styled";
+import { CardCharacter, MainContainer, NameChar} from "./Characters.styled";
+import Link from "next/link";
 
 type Characters= {
-  _id: number;
+  _id: string;
   name: string;
-  school: string;
-  birthday: string;
-  damageType: string;
   photoUrl: string;
-  image: string;
-  imageSchool: string;
 };
 // -> Mendefinisikan type data characters dari API
 
@@ -41,35 +37,31 @@ export default function Characters(){
   }
 
     fetchData();
-    // Memanggil fungsi untuk mengambil data dari API
+    // -> Memanggil fungsi untuk mengambil data dari API
   }, []);
   // -> [] memastikan efek hanya dijalankan sekali saat komponen pertama kali dirender
     return(
     <main>
         <MainContainer>
             {Array.isArray(data) && data.map((item) => (
-              // -> mapping data dari API dan lakukan pengkondisian && agar mengembalikan nilai null jika kondisi bernilai false
-                <CardCharacter key={item._id}>
+              <CardCharacter key={item._id}>
+                {/* -> mapping data dari API dan lakukan pengkondisian && agar mengembalikan nilai null jika kondisi bernilai false */}
                   {/* -> array key harus memiliki nilai unique contoh index / _id*/}
-                  <Image
+                  <Link
+                  href={`/character-detail/${item._id}`}
+                  // -> arahkan ke folder character-detail di pages sesuai _id dari API
+                  >
+                    <Image
                     // menggunakan image bawaan dari next js untuk merender image dengan props ....
                     src={item.photoUrl}
                     alt={`${item.name} Photo`}
-                    width={200}
-                    height={200}
+                    width={150}
+                    height={150}
                     />
-                    <h2>{item.name}</h2>
-                      <p>School : {item.school}</p>
-                      <Image
-                    src={item.imageSchool}
-                    alt={`${item.school} Logo`}
-                    width={50}
-                    height={50}
-                  />
-                        <p>Birthday : {item.birthday}</p>
-                          <p>Damage type : {item.damageType}</p>
+                  </Link>
+                <NameChar>{item.name}</NameChar>
                 </CardCharacter>
-            ))}
+              ))}
         </MainContainer>
     </main>
     )
