@@ -35,7 +35,13 @@ export default function CharacterDetail(){
       }, [_id]);
     
       if (!character) {
-        return <p>Loading... atau data tidak ditemukan</p>;
+        return(
+          <>
+          <div className="justify-center ">
+              <p>Loading... atau data tidak ditemukan</p>
+          </div>
+          </>
+        ) 
       }
 
     return(

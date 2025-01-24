@@ -53,7 +53,7 @@ export default function Characters() {
             {/* -> array key harus memiliki nilai unique contoh index / _id*/}
             <Link
               href={`/character-detail/${item._id}`}
-              // -> arahkan ke folder character-detail di pages sesuai _id dari API
+            // -> arahkan ke folder character-detail di pages sesuai _id dari API
             >
               <Image
                 // menggunakan image bawaan dari next js untuk merender image dengan props ....
@@ -66,6 +66,7 @@ export default function Characters() {
             <NameChar>{item.name}</NameChar>
           </CardCharacter>
         ))}
+      <div className="w-full bg-black"></div>
     </MainContainer>
   );
 }
